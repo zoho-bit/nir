@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>REALSELER • Premium ID Store</title>
-  <meta name="description" content="Premium verified IDs - Instant delivery after payment">
+  <meta name="description" content="Premium normal IDs - Instant delivery after payment">
   <style>
     * {
       box-sizing: border-box;
@@ -1093,7 +1093,7 @@
     <div class="stock">NORMAL IDs : <span id="stock">Loading...</span></div>
     <div class="live-status"><span class="live-dot"></span><span id="liveStatusText">Secure live store active</span></div>
    <div class="note">
-    Fresh verified accounts<br>
+    Fresh normal accounts<br>
     Automatic delivery after payment<br>
     Fast & secure process<br>
     <span class="replacement" id="replacementLink" onclick="openPolicy()">Replacement Policy : 11:05 AM</span>
@@ -1212,6 +1212,10 @@
 
   async function initFirebase() {
     try {
+      const res = await fetch(CONFIG_URL, { cache: "no-store" });
+      if (!res.ok) throw new Error("Config request failed");
+      const firebaseConfig = await res.json();
+      const app = initializeApp(firebaseConfig);
       db = getDatabase(app);
       startApp();
     } catch (err) {
