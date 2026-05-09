@@ -1212,7 +1212,6 @@
 
   async function initFirebase() {
     try {
-      const app = initializeApp(FIREBASE_CONFIG);
       db = getDatabase(app);
       startApp();
     } catch (err) {
